@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Painting;
 using System.Drawing.Drawing2D;
+using Jenyay.Mathematics;
 
 namespace DynamicWave
 {
@@ -25,17 +26,23 @@ namespace DynamicWave
             X0Box.Text = "1";
             SteptBox.Text = "0,001";
             AlphaBox.Text = "5";
+            NBox.Text = "512";
 
         }
 
         Painter painter = new Painter();
         List<Layers> layers = new List<Layers>();
         List<PointF> sinus = new List<PointF>();
+        int size;
+        List<List<Complex>> data_fure = new List<List<Complex>>();
+        Complex[] data_for_fure;
         WaveFunction wave;
+        bool is_create_fourier = false;
+
         private void Run_Click(object sender, EventArgs e)
         {
-           wave = new WaveFunction(double.Parse(ABox.Text), double.Parse(X0Box.Text), double.Parse(SigmaBox.Text),
-              double.Parse(SteptBox.Text), double.Parse(RBox.Text), double.Parse(V0Box.Text), double.Parse(AlphaBox.Text) );
+            wave = new WaveFunction(double.Parse(ABox.Text), double.Parse(X0Box.Text), double.Parse(SigmaBox.Text),
+               double.Parse(SteptBox.Text), double.Parse(RBox.Text), double.Parse(V0Box.Text), double.Parse(AlphaBox.Text));
             layers.Clear();
             Layers layer = new Layers
             {
@@ -67,16 +74,28 @@ namespace DynamicWave
                 thickness = 3,
                 graph = wave.NextWave()
             };
+            if (is_create_fourier)
+            {
+                if (data_fure.Count == 0) for (int i = 0; i < layer.graph.Count; i++)
+                    {
+                        List<Complex> buf = new List<Complex>();
+                        data_fure.Add(buf);
+                    }
+
+                for (int i=0; i<layer.graph.Count; i++)
+                {
+                    Complex buf = new Complex { Re = layer.graph[i].Y, Im = 0 };
+                    data_fure[i].Add(buf);
+                }
+
+                FureProgress.Value = (int)((double)data_fure[0].Count / size*100);
+                if (data_fure[0].Count == size) is_create_fourier = false;
+            }
             layers[0] = layer;
             WaveBox.Image = painter.Draw(-2, 2, -1, 20, WaveBox.Width, WaveBox.Height, layers, true);
         }
 
-        private void WaveBox_MouseClick(object sender, MouseEventArgs e)
-        {
-            wave.selected_x = painter.ReturnSelectedX(e.X, WaveBox.Width, WaveBox.Height);
-            wave.is_seleced_x = true;
-            painter.vertical_line = true;
-        }
+
 
         private void Stop_Click(object sender, EventArgs e)
         {
@@ -85,6 +104,15 @@ namespace DynamicWave
 
         private void SearchFure_Click(object sender, EventArgs e)
         {
+            is_create_fourier = true;
+            if (is_create_fourier)
+            {
+                size = int.Parse(NBox.Text);
+                data_for_fure = new Complex[size];
+
+
+            }
+
 
         }
     }

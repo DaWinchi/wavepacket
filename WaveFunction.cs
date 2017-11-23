@@ -268,6 +268,10 @@ namespace DynamicWave
             return wave;
         }
 
+        private void Create_spektr()
+        {
+           
 
+        }
     }
 }

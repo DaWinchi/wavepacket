@@ -50,6 +50,9 @@
             this.SpectrBox = new System.Windows.Forms.PictureBox();
             this.SingleWaveBox = new System.Windows.Forms.PictureBox();
             this.SearchFure = new System.Windows.Forms.Button();
+            this.NBox = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.FureProgress = new System.Windows.Forms.ProgressBar();
             ((System.ComponentModel.ISupportInitialize)(this.WaveBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SpectrBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SingleWaveBox)).BeginInit();
@@ -62,7 +65,6 @@
             this.WaveBox.Size = new System.Drawing.Size(873, 310);
             this.WaveBox.TabIndex = 0;
             this.WaveBox.TabStop = false;
-            this.WaveBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.WaveBox_MouseClick);
             // 
             // Run
             // 
@@ -76,7 +78,7 @@
             // 
             // timer1
             // 
-            this.timer1.Interval = 1;
+            this.timer1.Interval = 25;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // SigmaBox
@@ -227,11 +229,37 @@
             this.SearchFure.UseVisualStyleBackColor = true;
             this.SearchFure.Click += new System.EventHandler(this.SearchFure_Click);
             // 
+            // NBox
+            // 
+            this.NBox.Location = new System.Drawing.Point(1072, 194);
+            this.NBox.Name = "NBox";
+            this.NBox.Size = new System.Drawing.Size(87, 20);
+            this.NBox.TabIndex = 20;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(891, 197);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(172, 13);
+            this.label8.TabIndex = 21;
+            this.label8.Text = "Количество отсчётов для Фурье";
+            // 
+            // FureProgress
+            // 
+            this.FureProgress.Location = new System.Drawing.Point(894, 220);
+            this.FureProgress.Name = "FureProgress";
+            this.FureProgress.Size = new System.Drawing.Size(265, 23);
+            this.FureProgress.TabIndex = 22;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1171, 690);
+            this.Controls.Add(this.FureProgress);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.NBox);
             this.Controls.Add(this.SearchFure);
             this.Controls.Add(this.SingleWaveBox);
             this.Controls.Add(this.SpectrBox);
@@ -285,6 +313,9 @@
         private System.Windows.Forms.PictureBox SpectrBox;
         private System.Windows.Forms.PictureBox SingleWaveBox;
         private System.Windows.Forms.Button SearchFure;
+        private System.Windows.Forms.TextBox NBox;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.ProgressBar FureProgress;
     }
 }
 
