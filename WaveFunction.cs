@@ -12,7 +12,7 @@ namespace DynamicWave
     {
         public double Vo = 1, alph = 5;
         private double step_t, step_x, R;
-        private int K = 100;
+        private int K = 100, a=20;
         public double selected_x;
         public bool is_seleced_x = false;
         List<double> x = new List<double>();
@@ -24,21 +24,53 @@ namespace DynamicWave
         List<Complex> beta = new List<Complex>();
         List<Complex> KSI = new List<Complex>();
         List<Complex> U = new List<Complex>();
+        List<Complex> f_x = new List<Complex>();
 
         public WaveFunction(double A, double x0, double sgm, double step_time, double r, double v0, double alpha)
         {
-           
+
             step_t = step_time;
             Vo = v0;
             R = r;
             alph = alpha;
             Create_x();
             Create_U_x();
+            Create_f_x();
             Initialization_KSI(A, x0, sgm);
 
         }
 
+        private void Create_f_x()
+        {
+            List<double> sigma = new List<double>();
+            for (int i=0; i<a; i++)
+            {
+                double buf = (x[i] + Math.Abs(x[a])) * (x[i] + Math.Abs(x[a]));
+                sigma.Add(buf);
+            }
 
+            for (int i=a; i<K-a; i++)
+            {
+                sigma.Add(0);
+            }
+
+            for (int i = K-a; i <=K; i++)
+            {
+                double buf = (x[i] + Math.Abs(x[a])) * (x[i] - Math.Abs(x[a]));
+                sigma.Add(buf);
+            }
+
+            //создаю функцию, отвечающую за прозрачность стенок
+            double gamma = 4;
+            for (int i=0;i<=K;i++)
+            {
+                Complex znam = new Complex { Re = 1, Im = gamma * sigma[i] };
+                Complex buf = new Complex();
+                buf = 1 / znam;
+                f_x.Add(buf);
+            }
+
+        }
         public void Create_x()
         {
             x.Clear();
@@ -169,28 +201,6 @@ namespace DynamicWave
             D.Clear();
             Complex cm = new Complex(0, 0);
             D.Add(cm);
-            //for (int i = 1; i < K; i++)
-            //{
-            //    Complex cmplx = new Complex
-            //    {
-            //        Re = KSI[i].Re,
-            //        Im = step_t / 2 * (2 / (x[i + 1] - x[i - 1]) * ((KSI[i + 1].Im - KSI[i].Im) / (x[i + 1] - x[i]) -
-            //        (KSI[i].Im - KSI[i - 1].Im) / (x[i] - x[i - 1])) - U[i].Re * KSI[i].Im)
-            //    };
-            //    D.Add(cmplx);
-            //}
-
-            //for (int i = 1; i < K; i++)
-            //{
-            //    Complex cmplx = new Complex
-            //    {
-            //        Re = KSI[i].Abs,
-            //        Im = step_t / 2 * (2 / (x[i + 1] - x[i - 1]) * ((KSI[i + 1].Abs - KSI[i].Abs) / (x[i + 1] - x[i]) -
-            //        (KSI[i].Abs - KSI[i - 1].Abs) / (x[i] - x[i - 1])) - U[i].Re * KSI[i].Abs)
-            //    };
-            //    D.Add(cmplx);
-            //}
-
             for (int i = 1; i < K; i++)
             {
 
