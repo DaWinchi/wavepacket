@@ -12,7 +12,7 @@ namespace DynamicWave
     {
         public double Vo = 1, alph = 5;
         private double step_t, step_x, R;
-        private int K = 100, a = 5;
+        private int K = 100, a = 10;
         public double selected_x;
         public bool is_seleced_x = false;
         List<double> x = new List<double>();
@@ -42,6 +42,7 @@ namespace DynamicWave
 
         private void Create_f_x()
         {
+            f_x.Clear();
             List<double> sigma = new List<double>();
             for (int i = 0; i < a; i++)
             {
@@ -56,7 +57,7 @@ namespace DynamicWave
 
             for (int i = K - a; i <= K; i++)
             {
-                double buf = (x[i] + Math.Abs(x[a])) * (x[i] - Math.Abs(x[a]));
+                double buf = (x[i] - Math.Abs(x[a])) * (x[i] - Math.Abs(x[a]));
                 sigma.Add(buf);
             }
 
@@ -84,45 +85,15 @@ namespace DynamicWave
         public void Create_U_x()
         {
             U.Clear();
-            int a = 100;
-            double const_a = 0.2;
+
             for (int i = 0; i <= K; i++)
             {
                 Complex cmplx = new Complex { Re = 0, Im = 0 };
                 U.Add(cmplx);
             }
 
-            //for (int i = 0; i < a; i++)
-            //{
-            //    Complex cmplx = new Complex
-            //    {
-            //        Re = (x[i] + const_a) * (x[i] + const_a),
-            //        Im = 0
-            //    };
-            //    U[i] = cmplx;
-            //}
 
-            //for (int i = K; i >= K - a; i--)
-            //{
-            //    Complex cmplx = new Complex
-            //    {
-            //        Re = (x[i] - const_a) * (x[i] - const_a),
-            //        Im = 0
-            //    };
-            //    U[i] = cmplx;
-            //}
-
-            //for (int i = a; i < K - a; i++)
-            //{
-            //    Complex cmplx = new Complex
-            //    {
-            //        Re = Vo * Math.Sin(alph * x[i]) * Math.Sin(alph * x[i]),
-            //        Im = 0
-            //    };
-            //    U[i] = cmplx;
-            //}
-
-            for (int i = 0; i <= K; i++)
+            for (int i = 0; i <=K; i++)
             {
                 Complex cmplx = new Complex
                 {
@@ -193,8 +164,8 @@ namespace DynamicWave
             {
                 Complex buf = new Complex();
                 buf = step_t * U[i] / 2 +
-                    step_t * f_x[i] * f_x[i + 1] +
-                    f_x[i - 1] / step_x / step_x / 2;
+                    step_t * f_x[i] * (f_x[i + 1] +
+                    f_x[i - 1]) / step_x / step_x / 2;
                 Complex cmplx = new Complex
                 {
                     Re = -buf.Im+1,
