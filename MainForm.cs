@@ -82,5 +82,10 @@ namespace DynamicWave
         {
             timer1.Stop();
         }
+
+        private void SearchFure_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

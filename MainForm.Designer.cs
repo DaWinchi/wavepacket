@@ -47,21 +47,26 @@
             this.Stop = new System.Windows.Forms.Button();
             this.SteptBox = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
+            this.SpectrBox = new System.Windows.Forms.PictureBox();
+            this.SingleWaveBox = new System.Windows.Forms.PictureBox();
+            this.SearchFure = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.WaveBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SpectrBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SingleWaveBox)).BeginInit();
             this.SuspendLayout();
             // 
             // WaveBox
             // 
             this.WaveBox.Location = new System.Drawing.Point(12, 11);
             this.WaveBox.Name = "WaveBox";
-            this.WaveBox.Size = new System.Drawing.Size(717, 310);
+            this.WaveBox.Size = new System.Drawing.Size(873, 310);
             this.WaveBox.TabIndex = 0;
             this.WaveBox.TabStop = false;
             this.WaveBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.WaveBox_MouseClick);
             // 
             // Run
             // 
-            this.Run.Location = new System.Drawing.Point(749, 361);
+            this.Run.Location = new System.Drawing.Point(929, 612);
             this.Run.Name = "Run";
             this.Run.Size = new System.Drawing.Size(230, 30);
             this.Run.TabIndex = 1;
@@ -76,21 +81,21 @@
             // 
             // SigmaBox
             // 
-            this.SigmaBox.Location = new System.Drawing.Point(879, 23);
+            this.SigmaBox.Location = new System.Drawing.Point(1059, 13);
             this.SigmaBox.Name = "SigmaBox";
             this.SigmaBox.Size = new System.Drawing.Size(100, 20);
             this.SigmaBox.TabIndex = 2;
             // 
             // X0Box
             // 
-            this.X0Box.Location = new System.Drawing.Point(879, 55);
+            this.X0Box.Location = new System.Drawing.Point(1059, 38);
             this.X0Box.Name = "X0Box";
             this.X0Box.Size = new System.Drawing.Size(100, 20);
             this.X0Box.TabIndex = 3;
             // 
             // ABox
             // 
-            this.ABox.Location = new System.Drawing.Point(879, 88);
+            this.ABox.Location = new System.Drawing.Point(1059, 64);
             this.ABox.Name = "ABox";
             this.ABox.Size = new System.Drawing.Size(100, 20);
             this.ABox.TabIndex = 4;
@@ -98,7 +103,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(773, 23);
+            this.label1.Location = new System.Drawing.Point(953, 13);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(84, 13);
             this.label1.TabIndex = 5;
@@ -107,7 +112,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(773, 55);
+            this.label2.Location = new System.Drawing.Point(953, 38);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(90, 13);
             this.label2.TabIndex = 6;
@@ -116,7 +121,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(773, 95);
+            this.label3.Location = new System.Drawing.Point(953, 64);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(83, 13);
             this.label3.TabIndex = 7;
@@ -124,14 +129,14 @@
             // 
             // V0Box
             // 
-            this.V0Box.Location = new System.Drawing.Point(879, 131);
+            this.V0Box.Location = new System.Drawing.Point(1059, 90);
             this.V0Box.Name = "V0Box";
             this.V0Box.Size = new System.Drawing.Size(100, 20);
             this.V0Box.TabIndex = 8;
             // 
             // AlphaBox
             // 
-            this.AlphaBox.Location = new System.Drawing.Point(879, 166);
+            this.AlphaBox.Location = new System.Drawing.Point(1059, 116);
             this.AlphaBox.Name = "AlphaBox";
             this.AlphaBox.Size = new System.Drawing.Size(100, 20);
             this.AlphaBox.TabIndex = 9;
@@ -139,7 +144,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(746, 131);
+            this.label4.Location = new System.Drawing.Point(929, 90);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(124, 13);
             this.label4.TabIndex = 10;
@@ -148,7 +153,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(799, 166);
+            this.label5.Location = new System.Drawing.Point(979, 116);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(34, 13);
             this.label5.TabIndex = 11;
@@ -156,7 +161,7 @@
             // 
             // RBox
             // 
-            this.RBox.Location = new System.Drawing.Point(879, 207);
+            this.RBox.Location = new System.Drawing.Point(1059, 142);
             this.RBox.Name = "RBox";
             this.RBox.Size = new System.Drawing.Size(100, 20);
             this.RBox.TabIndex = 12;
@@ -164,7 +169,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(799, 207);
+            this.label6.Location = new System.Drawing.Point(998, 142);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(15, 13);
             this.label6.TabIndex = 13;
@@ -172,7 +177,7 @@
             // 
             // Stop
             // 
-            this.Stop.Location = new System.Drawing.Point(749, 397);
+            this.Stop.Location = new System.Drawing.Point(929, 648);
             this.Stop.Name = "Stop";
             this.Stop.Size = new System.Drawing.Size(230, 30);
             this.Stop.TabIndex = 14;
@@ -182,7 +187,7 @@
             // 
             // SteptBox
             // 
-            this.SteptBox.Location = new System.Drawing.Point(879, 233);
+            this.SteptBox.Location = new System.Drawing.Point(1059, 168);
             this.SteptBox.Name = "SteptBox";
             this.SteptBox.Size = new System.Drawing.Size(100, 20);
             this.SteptBox.TabIndex = 15;
@@ -190,17 +195,46 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(757, 233);
+            this.label7.Location = new System.Drawing.Point(947, 168);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(89, 13);
             this.label7.TabIndex = 16;
             this.label7.Text = "Шаг по времени";
             // 
+            // SpectrBox
+            // 
+            this.SpectrBox.Location = new System.Drawing.Point(12, 327);
+            this.SpectrBox.Name = "SpectrBox";
+            this.SpectrBox.Size = new System.Drawing.Size(509, 351);
+            this.SpectrBox.TabIndex = 17;
+            this.SpectrBox.TabStop = false;
+            // 
+            // SingleWaveBox
+            // 
+            this.SingleWaveBox.Location = new System.Drawing.Point(528, 327);
+            this.SingleWaveBox.Name = "SingleWaveBox";
+            this.SingleWaveBox.Size = new System.Drawing.Size(395, 351);
+            this.SingleWaveBox.TabIndex = 18;
+            this.SingleWaveBox.TabStop = false;
+            // 
+            // SearchFure
+            // 
+            this.SearchFure.Location = new System.Drawing.Point(929, 576);
+            this.SearchFure.Name = "SearchFure";
+            this.SearchFure.Size = new System.Drawing.Size(230, 30);
+            this.SearchFure.TabIndex = 19;
+            this.SearchFure.Text = "Начать сбор информации для спектра";
+            this.SearchFure.UseVisualStyleBackColor = true;
+            this.SearchFure.Click += new System.EventHandler(this.SearchFure_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1007, 532);
+            this.ClientSize = new System.Drawing.Size(1171, 690);
+            this.Controls.Add(this.SearchFure);
+            this.Controls.Add(this.SingleWaveBox);
+            this.Controls.Add(this.SpectrBox);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.SteptBox);
             this.Controls.Add(this.Stop);
@@ -221,6 +255,8 @@
             this.Name = "MainForm";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.WaveBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SpectrBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SingleWaveBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -246,6 +282,9 @@
         private System.Windows.Forms.Button Stop;
         private System.Windows.Forms.TextBox SteptBox;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.PictureBox SpectrBox;
+        private System.Windows.Forms.PictureBox SingleWaveBox;
+        private System.Windows.Forms.Button SearchFure;
     }
 }
 

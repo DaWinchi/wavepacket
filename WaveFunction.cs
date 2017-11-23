@@ -12,7 +12,7 @@ namespace DynamicWave
     {
         public double Vo = 1, alph = 5;
         private double step_t, step_x, R;
-        private int K = 100, a = 10;
+        private int K = 300, a = 30;
         public double selected_x;
         public bool is_seleced_x = false;
         List<double> x = new List<double>();
@@ -93,7 +93,7 @@ namespace DynamicWave
             }
 
 
-            for (int i = 0; i <=K; i++)
+            for (int i = a; i <K-a; i++)
             {
                 Complex cmplx = new Complex
                 {
