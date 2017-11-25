@@ -37,9 +37,11 @@ namespace DynamicWave
         
         Painter painter = new Painter();
         List<Layers> layers = new List<Layers>();
+        static object lockerDF = new object();
         static List<List<PointF>> data_furePic= new List<List<PointF>>();
         static int size=0;
         static float stept = 0;
+        static bool isSpectrDone = false;
        static List<List<Complex>> data_fure = new List<List<Complex>>();
         Complex[] data_for_fure;
         WaveFunction wave;
@@ -77,6 +79,8 @@ namespace DynamicWave
             MomentBar.Maximum = wave.ReturnCountPoints();
             MomentBar.Value = MomentBar.Maximum / 2;
 
+            streamFure.Text = "Ожидание данных для разложения Фурье...";
+
             timer1.Start();
         }
 
@@ -89,6 +93,9 @@ namespace DynamicWave
                 thickness = 3,
                 graph = wave.NextWave()
             };
+
+            if(isSpectrDone) streamFure.Text = "Спектры готов!";
+
             if (is_create_fourier)
             {
 
@@ -108,7 +115,13 @@ namespace DynamicWave
                 }
 
                 FureProgress.Value = (int)((double)data_fure[0].Count / size * 100);
-                if (data_fure[0].Count == size) { is_create_fourier = false; MomentBar.Enabled = true; }
+                if (data_fure[0].Count == size) {
+                    is_create_fourier = false;
+                    MomentBar.Enabled = true;
+                    isSpectrDone = false;
+                    threadCreaterOfSpectr.Start();
+
+                }
             }
             layers[1] = layer;
             WaveBox.Image = painter.Draw(-2, 2, -1, 20, WaveBox.Width, WaveBox.Height, layers, true);
@@ -116,32 +129,36 @@ namespace DynamicWave
 
         static private void Create_spectr()
         {
-            float step = (float)stept / size;
-            for (int i=0; i<data_fure.Count; i++)
+            lock (lockerDF)
             {
-                
-                Complex[] buf = new Complex[size];
-                for (int j=0; j<size; j++)
+                data_furePic.Clear();
+                float step = (float)stept / size;
+                for (int i = 0; i < data_fure.Count; i++)
                 {
-                    buf[j] = data_fure[i][j];
+
+                    Complex[] buf = new Complex[size];
+                    for (int j = 0; j < size; j++)
+                    {
+                        buf[j] = data_fure[i][j];
+                    }
+
+                    Fourier.FFT(buf);
+
+                    for (int j = 0; j < size; j++)
+                    {
+                        data_fure[i][j] = buf[j];
+                    }
+
+                    List<PointF> buf_vector = new List<PointF>();
+                    for (int j = 0; j < size; j++)
+                    {
+                        PointF point = new PointF { X = j * step, Y = (float)data_fure[i][j].Abs };
+                        buf_vector.Add(point);
+                    }
+                    data_furePic.Add(buf_vector);
+
                 }
-
-                Fourier.FFT(buf);
-
-                for (int j = 0; j < size; j++)
-                {
-                    data_fure[i][j]= buf[j];
-                }
-
-                List <PointF> buf_vector = new List <PointF>();
-                for (int j=0; j<size; j++)
-                {
-                    PointF point = new PointF { X = j * step, Y = (float)data_fure[i][j].Abs };
-                    buf_vector.Add(point);
-                }
-                data_furePic.Add(buf_vector);
-
-
+                isSpectrDone = true;
             }
 
         }
@@ -156,11 +173,12 @@ namespace DynamicWave
         {
             MomentBar.Enabled = false;
             is_create_fourier = true;
+            isSpectrDone = false;
             data_fure.Clear();
             size = int.Parse(NBox.Text);
-            data_for_fure = new Complex[size];
+            streamFure.Text = "Сбор данных и создание Фурье-образов...";
 
-          
+
         }
 
         private void MomentBar_Scroll(object sender, EventArgs e)

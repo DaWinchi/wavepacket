@@ -54,6 +54,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.FureProgress = new System.Windows.Forms.ProgressBar();
             this.MomentBar = new System.Windows.Forms.TrackBar();
+            this.streamFure = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.WaveBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SpectrBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SingleWaveBox)).BeginInit();
@@ -264,11 +265,22 @@
             this.MomentBar.TabIndex = 23;
             this.MomentBar.Scroll += new System.EventHandler(this.MomentBar_Scroll);
             // 
+            // streamFure
+            // 
+            this.streamFure.AutoSize = true;
+            this.streamFure.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.streamFure.Location = new System.Drawing.Point(899, 255);
+            this.streamFure.Name = "streamFure";
+            this.streamFure.Size = new System.Drawing.Size(197, 20);
+            this.streamFure.TabIndex = 24;
+            this.streamFure.Text = "Создайте Фурье-образы";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1171, 690);
+            this.Controls.Add(this.streamFure);
             this.Controls.Add(this.MomentBar);
             this.Controls.Add(this.FureProgress);
             this.Controls.Add(this.label8);
@@ -331,6 +343,7 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ProgressBar FureProgress;
         private System.Windows.Forms.TrackBar MomentBar;
+        private System.Windows.Forms.Label streamFure;
     }
 }
 
