@@ -273,6 +273,12 @@ namespace DynamicWave
             return K;
         }
 
+
+        public List<double> ReturnMapX()
+        {
+            return x;
+        }
+
         private void Create_spektr()
         {
            

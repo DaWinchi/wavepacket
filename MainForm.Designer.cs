@@ -55,23 +55,25 @@
             this.FureProgress = new System.Windows.Forms.ProgressBar();
             this.MomentBar = new System.Windows.Forms.TrackBar();
             this.streamFure = new System.Windows.Forms.Label();
+            this.FureBar = new System.Windows.Forms.TrackBar();
             ((System.ComponentModel.ISupportInitialize)(this.WaveBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SpectrBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SingleWaveBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.MomentBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FureBar)).BeginInit();
             this.SuspendLayout();
             // 
             // WaveBox
             // 
             this.WaveBox.Location = new System.Drawing.Point(12, 11);
             this.WaveBox.Name = "WaveBox";
-            this.WaveBox.Size = new System.Drawing.Size(873, 275);
+            this.WaveBox.Size = new System.Drawing.Size(873, 252);
             this.WaveBox.TabIndex = 0;
             this.WaveBox.TabStop = false;
             // 
             // Run
             // 
-            this.Run.Location = new System.Drawing.Point(929, 612);
+            this.Run.Location = new System.Drawing.Point(890, 326);
             this.Run.Name = "Run";
             this.Run.Size = new System.Drawing.Size(230, 30);
             this.Run.TabIndex = 1;
@@ -182,7 +184,7 @@
             // 
             // Stop
             // 
-            this.Stop.Location = new System.Drawing.Point(929, 648);
+            this.Stop.Location = new System.Drawing.Point(890, 362);
             this.Stop.Name = "Stop";
             this.Stop.Size = new System.Drawing.Size(230, 30);
             this.Stop.TabIndex = 14;
@@ -208,23 +210,23 @@
             // 
             // SpectrBox
             // 
-            this.SpectrBox.Location = new System.Drawing.Point(12, 343);
+            this.SpectrBox.Location = new System.Drawing.Point(12, 315);
             this.SpectrBox.Name = "SpectrBox";
-            this.SpectrBox.Size = new System.Drawing.Size(509, 335);
+            this.SpectrBox.Size = new System.Drawing.Size(436, 302);
             this.SpectrBox.TabIndex = 17;
             this.SpectrBox.TabStop = false;
             // 
             // SingleWaveBox
             // 
-            this.SingleWaveBox.Location = new System.Drawing.Point(528, 343);
+            this.SingleWaveBox.Location = new System.Drawing.Point(467, 315);
             this.SingleWaveBox.Name = "SingleWaveBox";
-            this.SingleWaveBox.Size = new System.Drawing.Size(395, 335);
+            this.SingleWaveBox.Size = new System.Drawing.Size(418, 302);
             this.SingleWaveBox.TabIndex = 18;
             this.SingleWaveBox.TabStop = false;
             // 
             // SearchFure
             // 
-            this.SearchFure.Location = new System.Drawing.Point(929, 576);
+            this.SearchFure.Location = new System.Drawing.Point(890, 278);
             this.SearchFure.Name = "SearchFure";
             this.SearchFure.Size = new System.Drawing.Size(230, 30);
             this.SearchFure.TabIndex = 19;
@@ -259,7 +261,7 @@
             // 
             this.MomentBar.Cursor = System.Windows.Forms.Cursors.NoMoveHoriz;
             this.MomentBar.Enabled = false;
-            this.MomentBar.Location = new System.Drawing.Point(12, 292);
+            this.MomentBar.Location = new System.Drawing.Point(12, 269);
             this.MomentBar.Name = "MomentBar";
             this.MomentBar.Size = new System.Drawing.Size(872, 45);
             this.MomentBar.TabIndex = 23;
@@ -275,11 +277,22 @@
             this.streamFure.TabIndex = 24;
             this.streamFure.Text = "Создайте Фурье-образы";
             // 
+            // FureBar
+            // 
+            this.FureBar.Cursor = System.Windows.Forms.Cursors.NoMoveHoriz;
+            this.FureBar.Enabled = false;
+            this.FureBar.Location = new System.Drawing.Point(12, 633);
+            this.FureBar.Name = "FureBar";
+            this.FureBar.Size = new System.Drawing.Size(436, 45);
+            this.FureBar.TabIndex = 25;
+            this.FureBar.Scroll += new System.EventHandler(this.FureBar_Scroll);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1171, 690);
+            this.Controls.Add(this.FureBar);
             this.Controls.Add(this.streamFure);
             this.Controls.Add(this.MomentBar);
             this.Controls.Add(this.FureProgress);
@@ -311,6 +324,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.SpectrBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SingleWaveBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.MomentBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FureBar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -344,6 +358,7 @@
         private System.Windows.Forms.ProgressBar FureProgress;
         private System.Windows.Forms.TrackBar MomentBar;
         private System.Windows.Forms.Label streamFure;
+        private System.Windows.Forms.TrackBar FureBar;
     }
 }
 
