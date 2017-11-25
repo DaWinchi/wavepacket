@@ -268,6 +268,11 @@ namespace DynamicWave
             return wave;
         }
 
+        public int ReturnCountPoints()
+        {
+            return K+1;
+        }
+
         private void Create_spektr()
         {
            

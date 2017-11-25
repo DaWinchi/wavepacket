@@ -53,16 +53,18 @@
             this.NBox = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.FureProgress = new System.Windows.Forms.ProgressBar();
+            this.MomentBar = new System.Windows.Forms.TrackBar();
             ((System.ComponentModel.ISupportInitialize)(this.WaveBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SpectrBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SingleWaveBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MomentBar)).BeginInit();
             this.SuspendLayout();
             // 
             // WaveBox
             // 
             this.WaveBox.Location = new System.Drawing.Point(12, 11);
             this.WaveBox.Name = "WaveBox";
-            this.WaveBox.Size = new System.Drawing.Size(873, 310);
+            this.WaveBox.Size = new System.Drawing.Size(873, 275);
             this.WaveBox.TabIndex = 0;
             this.WaveBox.TabStop = false;
             // 
@@ -205,17 +207,17 @@
             // 
             // SpectrBox
             // 
-            this.SpectrBox.Location = new System.Drawing.Point(12, 327);
+            this.SpectrBox.Location = new System.Drawing.Point(12, 343);
             this.SpectrBox.Name = "SpectrBox";
-            this.SpectrBox.Size = new System.Drawing.Size(509, 351);
+            this.SpectrBox.Size = new System.Drawing.Size(509, 335);
             this.SpectrBox.TabIndex = 17;
             this.SpectrBox.TabStop = false;
             // 
             // SingleWaveBox
             // 
-            this.SingleWaveBox.Location = new System.Drawing.Point(528, 327);
+            this.SingleWaveBox.Location = new System.Drawing.Point(528, 343);
             this.SingleWaveBox.Name = "SingleWaveBox";
-            this.SingleWaveBox.Size = new System.Drawing.Size(395, 351);
+            this.SingleWaveBox.Size = new System.Drawing.Size(395, 335);
             this.SingleWaveBox.TabIndex = 18;
             this.SingleWaveBox.TabStop = false;
             // 
@@ -252,11 +254,22 @@
             this.FureProgress.Size = new System.Drawing.Size(265, 23);
             this.FureProgress.TabIndex = 22;
             // 
+            // MomentBar
+            // 
+            this.MomentBar.Cursor = System.Windows.Forms.Cursors.NoMoveHoriz;
+            this.MomentBar.Enabled = false;
+            this.MomentBar.Location = new System.Drawing.Point(12, 292);
+            this.MomentBar.Name = "MomentBar";
+            this.MomentBar.Size = new System.Drawing.Size(872, 45);
+            this.MomentBar.TabIndex = 23;
+            this.MomentBar.Scroll += new System.EventHandler(this.MomentBar_Scroll);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1171, 690);
+            this.Controls.Add(this.MomentBar);
             this.Controls.Add(this.FureProgress);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.NBox);
@@ -285,6 +298,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.WaveBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SpectrBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SingleWaveBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MomentBar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -316,6 +330,7 @@
         private System.Windows.Forms.TextBox NBox;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ProgressBar FureProgress;
+        private System.Windows.Forms.TrackBar MomentBar;
     }
 }
 

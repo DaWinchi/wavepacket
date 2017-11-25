@@ -33,7 +33,7 @@ namespace DynamicWave
         Painter painter = new Painter();
         List<Layers> layers = new List<Layers>();
         List<PointF> sinus = new List<PointF>();
-        int size;
+        int size=0;
         List<List<Complex>> data_fure = new List<List<Complex>>();
         Complex[] data_for_fure;
         WaveFunction wave;
@@ -61,9 +61,15 @@ namespace DynamicWave
                 graph = wave.Get_U()
             };
 
-            layers.Add(layer);
-            layers.Add(layer2);
             
+            layers.Add(layer2);
+            layers.Add(layer);
+
+            MomentBar.Enabled = false;
+            MomentBar.Minimum = 0;
+            MomentBar.Maximum = wave.ReturnCountPoints();
+            MomentBar.Value = MomentBar.Maximum / 2;
+
             timer1.Start();
         }
 
@@ -95,9 +101,9 @@ namespace DynamicWave
                 }
 
                 FureProgress.Value = (int)((double)data_fure[0].Count / size * 100);
-                if (data_fure[0].Count == size) is_create_fourier = false;
+                if (data_fure[0].Count == size) { is_create_fourier = false; MomentBar.Enabled = true; }
             }
-            layers[0] = layer;
+            layers[1] = layer;
             WaveBox.Image = painter.Draw(-2, 2, -1, 20, WaveBox.Width, WaveBox.Height, layers, true);
         }
 
@@ -111,12 +117,21 @@ namespace DynamicWave
 
         private void SearchFure_Click(object sender, EventArgs e)
         {
+            MomentBar.Enabled = false;
             is_create_fourier = true;
             data_fure.Clear();
             size = int.Parse(NBox.Text);
             data_for_fure = new Complex[size];
 
 
+        }
+
+        private void MomentBar_Scroll(object sender, EventArgs e)
+        {
+            if ((data_fure[0].Count == size)&&(size!=0))
+            {
+
+            }
         }
     }
 }
