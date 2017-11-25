@@ -41,6 +41,7 @@ namespace DynamicWave
 
         private void Run_Click(object sender, EventArgs e)
         {
+            if (is_create_fourier) is_create_fourier = false;
             wave = new WaveFunction(double.Parse(ABox.Text), double.Parse(X0Box.Text), double.Parse(SigmaBox.Text),
                double.Parse(SteptBox.Text), double.Parse(RBox.Text), double.Parse(V0Box.Text), double.Parse(AlphaBox.Text));
             layers.Clear();
@@ -62,6 +63,7 @@ namespace DynamicWave
 
             layers.Add(layer);
             layers.Add(layer2);
+            
             timer1.Start();
         }
 
@@ -76,7 +78,7 @@ namespace DynamicWave
             };
             if (is_create_fourier)
             {
-                data_fure.Clear();
+
                 if (data_fure.Count == 0)
                 {
                     for (int i = 0; i < layer.graph.Count; i++)
@@ -86,13 +88,13 @@ namespace DynamicWave
                     }
                 }
 
-                for (int i=0; i<layer.graph.Count; i++)
+                for (int i = 0; i < layer.graph.Count; i++)
                 {
                     Complex buf = new Complex { Re = layer.graph[i].Y, Im = 0 };
                     data_fure[i].Add(buf);
                 }
 
-                FureProgress.Value = (int)((double)data_fure[0].Count / size*100);
+                FureProgress.Value = (int)((double)data_fure[0].Count / size * 100);
                 if (data_fure[0].Count == size) is_create_fourier = false;
             }
             layers[0] = layer;
@@ -104,18 +106,15 @@ namespace DynamicWave
         private void Stop_Click(object sender, EventArgs e)
         {
             timer1.Stop();
+            is_create_fourier = false;
         }
 
         private void SearchFure_Click(object sender, EventArgs e)
         {
             is_create_fourier = true;
-            if (is_create_fourier)
-            {
-                size = int.Parse(NBox.Text);
-                data_for_fure = new Complex[size];
-
-
-            }
+            data_fure.Clear();
+            size = int.Parse(NBox.Text);
+            data_for_fure = new Complex[size];
 
 
         }

@@ -7,3 +7,4 @@ D:\Учеба\4 курс\Моделирование систем\DynamicWave\obj
 D:\Учеба\4 курс\Моделирование систем\DynamicWave\obj\Debug\DynamicWave.exe
 D:\Учеба\4 курс\Моделирование систем\DynamicWave\obj\Debug\DynamicWave.pdb
 D:\Учеба\4 курс\Моделирование систем\DynamicWave\obj\Debug\DynamicWave.MainForm.resources
+D:\Учеба\4 курс\Моделирование систем\DynamicWave\obj\Debug\DynamicWave.csprojResolveAssemblyReference.cache
