@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Painting;
 using System.Drawing.Drawing2D;
 using Jenyay.Mathematics;
+using System.Threading;
 
 namespace DynamicWave
 {
@@ -30,11 +31,16 @@ namespace DynamicWave
 
         }
 
+       
+
+        Thread threadCreaterOfSpectr = new Thread(Create_spectr);
+        
         Painter painter = new Painter();
         List<Layers> layers = new List<Layers>();
-        List<PointF> sinus = new List<PointF>();
-        int size=0;
-        List<List<Complex>> data_fure = new List<List<Complex>>();
+        static List<List<PointF>> data_furePic= new List<List<PointF>>();
+        static int size=0;
+        static float stept = 0;
+       static List<List<Complex>> data_fure = new List<List<Complex>>();
         Complex[] data_for_fure;
         WaveFunction wave;
         bool is_create_fourier = false;
@@ -44,6 +50,7 @@ namespace DynamicWave
             if (is_create_fourier) is_create_fourier = false;
             wave = new WaveFunction(double.Parse(ABox.Text), double.Parse(X0Box.Text), double.Parse(SigmaBox.Text),
                double.Parse(SteptBox.Text), double.Parse(RBox.Text), double.Parse(V0Box.Text), double.Parse(AlphaBox.Text));
+            stept = float.Parse(SteptBox.Text);
             layers.Clear();
             Layers layer = new Layers
             {
@@ -107,7 +114,37 @@ namespace DynamicWave
             WaveBox.Image = painter.Draw(-2, 2, -1, 20, WaveBox.Width, WaveBox.Height, layers, true);
         }
 
+        static private void Create_spectr()
+        {
+            float step = (float)stept / size;
+            for (int i=0; i<data_fure.Count; i++)
+            {
+                
+                Complex[] buf = new Complex[size];
+                for (int j=0; j<size; j++)
+                {
+                    buf[j] = data_fure[i][j];
+                }
 
+                Fourier.FFT(buf);
+
+                for (int j = 0; j < size; j++)
+                {
+                    data_fure[i][j]= buf[j];
+                }
+
+                List <PointF> buf_vector = new List <PointF>();
+                for (int j=0; j<size; j++)
+                {
+                    PointF point = new PointF { X = j * step, Y = (float)data_fure[i][j].Abs };
+                    buf_vector.Add(point);
+                }
+                data_furePic.Add(buf_vector);
+
+
+            }
+
+        }
 
         private void Stop_Click(object sender, EventArgs e)
         {
@@ -123,15 +160,13 @@ namespace DynamicWave
             size = int.Parse(NBox.Text);
             data_for_fure = new Complex[size];
 
-
+          
         }
 
         private void MomentBar_Scroll(object sender, EventArgs e)
         {
-            if ((data_fure[0].Count == size)&&(size!=0))
-            {
-
-            }
+            painter.vertical_line = true;
+            painter.x_selected = MomentBar.Value;
         }
     }
 }

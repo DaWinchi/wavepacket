@@ -22,7 +22,7 @@ namespace Painting
         public double xmin, xmax, ymin, ymax, stepx, stepy;
         public int N;
         public bool scalling=true, vertical_line=false;
-        public float x_selected;
+        public int x_selected;
 
         public double X(double width, double x)
         {
@@ -34,15 +34,7 @@ namespace Painting
             return -height / (ymax - ymin) * (y - ymax);
         }
 
-        public float ReturnSelectedX(float x, int width, int height)
-        {
-            x_selected = x;
-                if (x_selected >= (float)width / 2) x_selected = (float)xmax / width/2 * (-width/2+x_selected);
-                else x_selected = (float)xmin / width/2 * (width/2-x_selected);
-            return x_selected;
-
-            
-        }
+       
 
         private void Scale(List <Layers> layers)
         {
@@ -196,8 +188,8 @@ namespace Painting
             if (vertical_line)
             {
                 Pen pen_line = new Pen(Color.Red, 3);
-                g.DrawLine(pen_line, (float)X(width, x_selected), (float)Y(height, ymin),
-                            (float)X(width, x_selected), (float)Y(height, ymax));
+                g.DrawLine(pen_line, (float)X(width, layers[0].graph[x_selected].X), (float)Y(height, ymin),
+                            (float)X(width, layers[0].graph[x_selected].X), (float)Y(height, ymax));
             }
             return bmp;
         }

@@ -270,7 +270,7 @@ namespace DynamicWave
 
         public int ReturnCountPoints()
         {
-            return K+1;
+            return K;
         }
 
         private void Create_spektr()
