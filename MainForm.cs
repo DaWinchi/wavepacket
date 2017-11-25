@@ -20,30 +20,34 @@ namespace DynamicWave
         {
             InitializeComponent();
             WaveBox.Image = painter.Draw(-1, 10, -10, 100, WaveBox.Width, WaveBox.Height, layers, true);
+            SpectrBox.Image = painter_fure.Draw(-1, 10, -10, 100, SpectrBox.Width, SpectrBox.Height, layers_fure, true);
+
             RBox.Text = "2";
             ABox.Text = "1";
             V0Box.Text = "1";
-            SigmaBox.Text = "0,5";
-            X0Box.Text = "1";
+            SigmaBox.Text = "0,05";
+            X0Box.Text = "0";
             SteptBox.Text = "0,001";
             AlphaBox.Text = "5";
-            NBox.Text = "512";
+            NBox.Text = "128";
 
         }
 
-       
+
 
         Thread threadCreaterOfSpectr = new Thread(Create_spectr);
-        
+
         Painter painter = new Painter();
+        Painter painter_fure = new Painter();
         List<Layers> layers = new List<Layers>();
+        List<Layers> layers_fure = new List<Layers>();
         static object lockerDF = new object();
-        static List<List<PointF>> data_furePic= new List<List<PointF>>();
-        static int size=0;
+        static List<List<PointF>> data_furePic = new List<List<PointF>>();
+        static int size = 0;
         static float stept = 0;
         static bool isSpectrDone = false;
-       static List<List<Complex>> data_fure = new List<List<Complex>>();
-        Complex[] data_for_fure;
+        static List<List<Complex>> data_fure = new List<List<Complex>>();
+
         WaveFunction wave;
         bool is_create_fourier = false;
 
@@ -70,7 +74,7 @@ namespace DynamicWave
                 graph = wave.Get_U()
             };
 
-            
+
             layers.Add(layer2);
             layers.Add(layer);
 
@@ -94,7 +98,7 @@ namespace DynamicWave
                 graph = wave.NextWave()
             };
 
-            if(isSpectrDone) streamFure.Text = "Спектры готов!";
+            if (isSpectrDone) streamFure.Text = "Спектры готовы!";
 
             if (is_create_fourier)
             {
@@ -115,7 +119,8 @@ namespace DynamicWave
                 }
 
                 FureProgress.Value = (int)((double)data_fure[0].Count / size * 100);
-                if (data_fure[0].Count == size) {
+                if (data_fure[0].Count == size)
+                {
                     is_create_fourier = false;
                     MomentBar.Enabled = true;
                     isSpectrDone = false;
@@ -142,7 +147,11 @@ namespace DynamicWave
                         buf[j] = data_fure[i][j];
                     }
 
-                    Fourier.FFT(buf);
+                    int k = 0;
+
+                    buf=Fourier.FFT(buf);
+
+                    
 
                     for (int j = 0; j < size; j++)
                     {
@@ -185,6 +194,18 @@ namespace DynamicWave
         {
             painter.vertical_line = true;
             painter.x_selected = MomentBar.Value;
+
+            layers_fure.Clear();
+            Layers layer_fure = new Layers
+            {
+                color = Color.Yellow,
+                style = DashStyle.Solid,
+                thickness = 3,
+                graph = data_furePic[MomentBar.Value]
+            };
+
+            layers_fure.Add(layer_fure);
+            SpectrBox.Image = painter_fure.Draw(-1, 10, -10, 100, SpectrBox.Width, SpectrBox.Height, layers_fure, true);
         }
     }
 }
