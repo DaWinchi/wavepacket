@@ -76,11 +76,15 @@ namespace DynamicWave
             };
             if (is_create_fourier)
             {
-                if (data_fure.Count == 0) for (int i = 0; i < layer.graph.Count; i++)
+                data_fure.Clear();
+                if (data_fure.Count == 0)
+                {
+                    for (int i = 0; i < layer.graph.Count; i++)
                     {
                         List<Complex> buf = new List<Complex>();
                         data_fure.Add(buf);
                     }
+                }
 
                 for (int i=0; i<layer.graph.Count; i++)
                 {
