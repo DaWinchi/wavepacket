@@ -83,7 +83,7 @@
             // Run
             // 
             this.Run.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Run.Location = new System.Drawing.Point(991, 603);
+            this.Run.Location = new System.Drawing.Point(991, 514);
             this.Run.Name = "Run";
             this.Run.Size = new System.Drawing.Size(261, 30);
             this.Run.TabIndex = 1;
@@ -195,7 +195,7 @@
             // Stop
             // 
             this.Stop.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Stop.Location = new System.Drawing.Point(991, 639);
+            this.Stop.Location = new System.Drawing.Point(991, 550);
             this.Stop.Name = "Stop";
             this.Stop.Size = new System.Drawing.Size(261, 30);
             this.Stop.TabIndex = 14;
@@ -276,7 +276,7 @@
             this.MomentBar.Location = new System.Drawing.Point(12, 249);
             this.MomentBar.Name = "MomentBar";
             this.MomentBar.Size = new System.Drawing.Size(959, 45);
-            this.MomentBar.TabIndex = 23;
+            this.MomentBar.TabIndex = 3;
             this.MomentBar.TickFrequency = 0;
             this.MomentBar.Scroll += new System.EventHandler(this.MomentBar_Scroll);
             // 
@@ -286,9 +286,9 @@
             this.streamFure.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.streamFure.Location = new System.Drawing.Point(988, 408);
             this.streamFure.Name = "streamFure";
-            this.streamFure.Size = new System.Drawing.Size(182, 18);
+            this.streamFure.Size = new System.Drawing.Size(139, 18);
             this.streamFure.TabIndex = 24;
-            this.streamFure.Text = "Создайте Фурье-образы";
+            this.streamFure.Text = "Создайте спектр...";
             // 
             // FureBar
             // 
@@ -297,7 +297,8 @@
             this.FureBar.Location = new System.Drawing.Point(12, 633);
             this.FureBar.Name = "FureBar";
             this.FureBar.Size = new System.Drawing.Size(535, 45);
-            this.FureBar.TabIndex = 25;
+            this.FureBar.TabIndex = 4;
+            this.FureBar.TickFrequency = 0;
             this.FureBar.Scroll += new System.EventHandler(this.FureBar_Scroll);
             // 
             // label9

@@ -19,9 +19,9 @@ namespace DynamicWave
         public MainForm()
         {
             InitializeComponent();
-            WaveBox.Image = painter.Draw(-1, 10, -10, 100, WaveBox.Width, WaveBox.Height, layers, true);
-            SpectrBox.Image = painter_fure.Draw(-1, 10, -10, 100, SpectrBox.Width, SpectrBox.Height, layers_fure, true);
-            SingleWaveBox.Image = painter_own_func.Draw(-1, 10, -10, 100, SingleWaveBox.Width, SingleWaveBox.Height, layers_own_functions, true);
+            WaveBox.Image = painter.Draw(-1, 10, -10, 100, WaveBox.Width, WaveBox.Height, layers, true, 2);
+            SpectrBox.Image = painter_fure.Draw(-1, 10, -10, 100, SpectrBox.Width, SpectrBox.Height, layers_fure, true, 3);
+            SingleWaveBox.Image = painter_own_func.Draw(-1, 10, -10, 100, SingleWaveBox.Width, SingleWaveBox.Height, layers_own_functions, true, 2);
 
             RBox.Text = "2";
             ABox.Text = "1";
@@ -30,7 +30,7 @@ namespace DynamicWave
             X0Box.Text = "0";
             SteptBox.Text = "0,001";
             AlphaBox.Text = "5";
-            NBox.Text = "128";
+            NBox.Text = "256";
 
         }
 
@@ -98,7 +98,7 @@ namespace DynamicWave
 
             
 
-            streamFure.Text = "Ожидание данных для разложения Фурье...";
+            streamFure.Text = "Создайте спектры...";
 
             timer1.Start();
         }
@@ -146,7 +146,7 @@ namespace DynamicWave
                 }
             }
             layers[1] = layer;
-            WaveBox.Image = painter.Draw(-2, 2, -1, 20, WaveBox.Width, WaveBox.Height, layers, true);
+            WaveBox.Image = painter.Draw(-2, 2, -1, 20, WaveBox.Width, WaveBox.Height, layers, true, 2);
         }
 
         static private void Create_spectr()
@@ -155,7 +155,7 @@ namespace DynamicWave
             {
                 data_furePic.Clear();
                 data_own_func.Clear();
-                float step = (float)stept / size;
+                float step = (float)1 / size/stept;
                 for (int i = 0; i < data_fure.Count; i++)
                 {
 
@@ -217,7 +217,7 @@ namespace DynamicWave
             isSpectrDone = false;
             data_fure.Clear();
             size = int.Parse(NBox.Text);
-            streamFure.Text = "Сбор данных и создание Фурье-образов...";
+            streamFure.Text = "Создание спектров...";
 
             FureBar.Enabled = false;
             FureBar.Minimum = 0;
@@ -241,7 +241,7 @@ namespace DynamicWave
             };
 
             layers_fure.Add(layer_fure);
-            SpectrBox.Image = painter_fure.Draw(-1, 10, -10, 100, SpectrBox.Width, SpectrBox.Height, layers_fure, true);
+            SpectrBox.Image = painter_fure.Draw(-1, 10, -10, 100, SpectrBox.Width, SpectrBox.Height, layers_fure, true, 2);
             FureBar.Enabled = true;
         }
 
@@ -260,7 +260,7 @@ namespace DynamicWave
             };
 
             layers_fure.Add(layer_fure);
-            SpectrBox.Image = painter_fure.Draw(-1, 10, -10, 100, SpectrBox.Width, SpectrBox.Height, layers_fure, true);
+            SpectrBox.Image = painter_fure.Draw(-1, 10, -10, 100, SpectrBox.Width, SpectrBox.Height, layers_fure, true, 2);
 
             layers_own_functions.Clear();
             Layers layer_own = new Layers
@@ -274,7 +274,7 @@ namespace DynamicWave
             layers_own_functions.Add(layer_own);
 
 
-            SingleWaveBox.Image = painter_own_func.Draw(-1, 10, -10, 100, SingleWaveBox.Width, SingleWaveBox.Height, layers_own_functions, true);
+            SingleWaveBox.Image = painter_own_func.Draw(-1, 10, -10, 100, SingleWaveBox.Width, SingleWaveBox.Height, layers_own_functions, true, 2);
         }
 
        

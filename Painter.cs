@@ -19,17 +19,18 @@ namespace Painting
     }
     class Painter
     {
-        public double xmin, xmax, ymin, ymax, stepx, stepy;
-        public int N;
+        public double xmin, xmax, ymin, ymax, stepx, stepy;       
         public bool scalling=true, vertical_line=false;
         public int x_selected;
+        public int text_count;
 
-        public double X(double width, double x)
+
+        private double X(double width, double x)
         {
             return width / (xmax - xmin) * (x - xmin);
         }
 
-        public double Y(double height, double y)
+        private double Y(double height, double y)
         {
             return -height / (ymax - ymin) * (y - ymax);
         }
@@ -63,8 +64,8 @@ namespace Painting
                 xmin = xmin_b;
                 ymin = ymin_b;
             }
-            stepy = (Math.Abs((double)ymin) + Math.Abs((double)ymax)) / 10;
-            stepx = (Math.Abs((double)xmin) + Math.Abs((double)xmax)) / 10;
+            stepy = (Math.Abs((double)ymin) + Math.Abs((double)ymax)) / 7;
+            stepx = (Math.Abs((double)xmin) + Math.Abs((double)xmax)) / 7;
         }
 
 
@@ -73,8 +74,10 @@ namespace Painting
             (double xmin_p, double xmax_p, double ymin_p, double ymax_p,
             int width, int height,
             List <Layers> layers,
-            bool isscale)
+            bool isscale,
+            int textCount)
         {
+            text_count = textCount;
             scalling = isscale;
             xmax = xmax_p;
             xmin = xmin_p;
@@ -145,13 +148,13 @@ namespace Painting
             //вправо
             for (double i = 0; i <=  xmax; i +=  stepx)
             {
-                str = i.ToString("F2");
+                str = i.ToString("F"+textCount.ToString());
                 g.DrawString(str, font, brush_text, (float) X(width, i)+2, height-14);
             }
             //влево
             for (double i = - stepx; i >=  xmin+stepx; i -=  stepx)
             {
-                str = i.ToString("F2");
+                str = i.ToString("F" + textCount.ToString());
                 g.DrawString(str, font, brush_text, (float) X(width, i)+2, height-14);
             }
 

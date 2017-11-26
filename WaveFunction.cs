@@ -13,8 +13,7 @@ namespace DynamicWave
         public double Vo = 1, alph = 5;
         private double step_t, step_x, R;
         private int K = 300, a = 30;
-        public double selected_x;
-        public bool is_seleced_x = false;
+       
         List<double> x = new List<double>();
         List<Complex> A = new List<Complex>();
         List<Complex> B = new List<Complex>();
@@ -72,7 +71,7 @@ namespace DynamicWave
             }
 
         }
-        public void Create_x()
+        private void Create_x()
         {
             x.Clear();
             step_x = (double)2 * R / (K + 1);
@@ -82,7 +81,7 @@ namespace DynamicWave
             }
         }
 
-        public void Create_U_x()
+        private void Create_U_x()
         {
             U.Clear();
 
@@ -105,7 +104,7 @@ namespace DynamicWave
 
         }
 
-        public void Initialization_KSI(double A, double x0, double sigma)
+        private void Initialization_KSI(double A, double x0, double sigma)
         {
             KSI.Clear();
             for (int i = 0; i <= K; i++)
@@ -279,10 +278,6 @@ namespace DynamicWave
             return x;
         }
 
-        private void Create_spektr()
-        {
-           
-
-        }
+      
     }
 }
