@@ -91,6 +91,7 @@ namespace DynamicWave
             layers.Add(layer);
 
             MomentBar.Enabled = false;
+            
             MomentBar.Minimum = 1;
             MomentBar.Maximum = wave.ReturnCountPoints()-1;
             MomentBar.Value = MomentBar.Maximum / 2;
@@ -275,5 +276,7 @@ namespace DynamicWave
 
             SingleWaveBox.Image = painter_own_func.Draw(-1, 10, -10, 100, SingleWaveBox.Width, SingleWaveBox.Height, layers_own_functions, true);
         }
+
+       
     }
 }
