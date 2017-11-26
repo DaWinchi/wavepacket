@@ -36,7 +36,7 @@ namespace DynamicWave
 
 
 
-        Thread threadCreaterOfSpectr = new Thread(Create_spectr);
+        Thread threadCreaterOfSpectr;
 
         Painter painter = new Painter();
         Painter painter_fure = new Painter();
@@ -67,7 +67,7 @@ namespace DynamicWave
 
 
             stept = float.Parse(SteptBox.Text);
-           
+            xx.AddRange(wave.ReturnMapX());
 
             layers.Clear();
             Layers layer = new Layers
@@ -135,10 +135,12 @@ namespace DynamicWave
                 FureProgress.Value = (int)((double)data_fure[0].Count / size * 100);
                 if (data_fure[0].Count == size)
                 {
+                    threadCreaterOfSpectr= new Thread(Create_spectr);
+                    threadCreaterOfSpectr.Start();
                     is_create_fourier = false;
                     MomentBar.Enabled = true;
                     isSpectrDone = false;
-                    threadCreaterOfSpectr.Start();
+                    
 
                 }
             }
@@ -173,7 +175,7 @@ namespace DynamicWave
                     }
 
                     List<PointF> buf_vector = new List<PointF>();
-                    for (int j = 1; j < size - 1; j++)
+                    for (int j = 0; j < size; j++)
                     {
                         PointF point = new PointF { X = j * step, Y = (float)data_fure[i][j].Abs };
                         buf_vector.Add(point);
@@ -183,12 +185,12 @@ namespace DynamicWave
                 }
 
 
-                for (int i = 0; i < size-2; i++) //-2 ибо не считаю спектры с концов, там всякий шум копится
+                for (int i = 0; i < size; i++) //-2 ибо не считаю спектры с концов, там всякий шум копится
                 {
                     List<PointF> buf_list = new List<PointF>();
                     for (int j=0; j< data_furePic.Count; j++)
                     {
-                        PointF buf = new PointF { X = data_furePic[j][i].X, Y = data_furePic[j][i].Y };
+                        PointF buf = new PointF { X = (float)xx[j], Y = (float)data_fure[j][i].Re };
                         buf_list.Add(buf);
                     }
                     data_own_func.Add(buf_list);
@@ -196,6 +198,8 @@ namespace DynamicWave
                 }
                 isSpectrDone = true;
             }
+
+            
 
         }
 
@@ -244,6 +248,18 @@ namespace DynamicWave
         {
             painter_fure.vertical_line = true;
             painter_fure.x_selected = FureBar.Value;
+
+            layers_fure.Clear();
+            Layers layer_fure = new Layers
+            {
+                color = Color.Yellow,
+                style = DashStyle.Solid,
+                thickness = 3,
+                graph = data_furePic[MomentBar.Value]
+            };
+
+            layers_fure.Add(layer_fure);
+            SpectrBox.Image = painter_fure.Draw(-1, 10, -10, 100, SpectrBox.Width, SpectrBox.Height, layers_fure, true);
 
             layers_own_functions.Clear();
             Layers layer_own = new Layers
