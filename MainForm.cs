@@ -28,7 +28,7 @@ namespace DynamicWave
             V0Box.Text = "1";
             SigmaBox.Text = "0,05";
             X0Box.Text = "0";
-            SteptBox.Text = "0,001";
+            SteptBox.Text = "0,01";
             AlphaBox.Text = "5";
             NBox.Text = "256";
 
@@ -113,7 +113,7 @@ namespace DynamicWave
                 graph = wave.NextWave()
             };
 
-            if (isSpectrDone) streamFure.Text = "Спектры готовы!";
+            if (isSpectrDone) { streamFure.Text = "Спектры готовы!"; MomentBar_Scroll(sender, e); FureBar_Scroll(sender, e); }
 
             if (is_create_fourier)
             {
