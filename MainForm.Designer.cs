@@ -102,6 +102,7 @@
             this.SigmaBox.Name = "SigmaBox";
             this.SigmaBox.Size = new System.Drawing.Size(100, 24);
             this.SigmaBox.TabIndex = 2;
+            this.SigmaBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // X0Box
             // 
@@ -109,6 +110,7 @@
             this.X0Box.Name = "X0Box";
             this.X0Box.Size = new System.Drawing.Size(100, 24);
             this.X0Box.TabIndex = 3;
+            this.X0Box.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // ABox
             // 
@@ -116,6 +118,7 @@
             this.ABox.Name = "ABox";
             this.ABox.Size = new System.Drawing.Size(100, 24);
             this.ABox.TabIndex = 4;
+            this.ABox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label1
             // 
@@ -150,6 +153,7 @@
             this.V0Box.Name = "V0Box";
             this.V0Box.Size = new System.Drawing.Size(100, 24);
             this.V0Box.TabIndex = 8;
+            this.V0Box.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // AlphaBox
             // 
@@ -157,6 +161,7 @@
             this.AlphaBox.Name = "AlphaBox";
             this.AlphaBox.Size = new System.Drawing.Size(100, 24);
             this.AlphaBox.TabIndex = 9;
+            this.AlphaBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label4
             // 
@@ -182,6 +187,7 @@
             this.RBox.Name = "RBox";
             this.RBox.Size = new System.Drawing.Size(100, 24);
             this.RBox.TabIndex = 12;
+            this.RBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label6
             // 
@@ -209,6 +215,7 @@
             this.SteptBox.Name = "SteptBox";
             this.SteptBox.Size = new System.Drawing.Size(100, 24);
             this.SteptBox.TabIndex = 15;
+            this.SteptBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label7
             // 
@@ -252,6 +259,7 @@
             this.NBox.Name = "NBox";
             this.NBox.Size = new System.Drawing.Size(100, 24);
             this.NBox.TabIndex = 20;
+            this.NBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label8
             // 
@@ -292,7 +300,7 @@
             // 
             // FureBar
             // 
-            this.FureBar.Cursor = System.Windows.Forms.Cursors.NoMoveHoriz;
+            this.FureBar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.FureBar.Enabled = false;
             this.FureBar.Location = new System.Drawing.Point(12, 633);
             this.FureBar.Name = "FureBar";
