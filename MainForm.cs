@@ -59,8 +59,7 @@ namespace DynamicWave
         bool is_create_fourier = false;
 
         private void Run_Click(object sender, EventArgs e)
-        {
-          
+        {            
             if (is_create_fourier) is_create_fourier = false;
             wave = new WaveFunction(double.Parse(ABox.Text), double.Parse(X0Box.Text), double.Parse(SigmaBox.Text),
                double.Parse(SteptBox.Text), double.Parse(RBox.Text), double.Parse(V0Box.Text), double.Parse(AlphaBox.Text));
@@ -96,8 +95,8 @@ namespace DynamicWave
             MomentBar.Maximum = wave.ReturnCountPoints()-1;
             MomentBar.Value = MomentBar.Maximum / 2;
 
-            
 
+            isSpectrDone = false;
             streamFure.Text = "Создайте спектры...";
 
             timer1.Start();
@@ -113,7 +112,7 @@ namespace DynamicWave
                 graph = wave.NextWave()
             };
 
-            if (isSpectrDone) { streamFure.Text = "Спектры готовы!"; MomentBar_Scroll(sender, e); FureBar_Scroll(sender, e); }
+            if (isSpectrDone) { streamFure.Text = "Спектры готовы!"; MomentBar_Scroll(sender, e); FureBar_Scroll(sender, e); isSpectrDone = false; }
 
             if (is_create_fourier)
             {
@@ -136,17 +135,20 @@ namespace DynamicWave
                 FureProgress.Value = (int)((double)data_fure[0].Count / size * 100);
                 if (data_fure[0].Count == size)
                 {
-                    threadCreaterOfSpectr= new Thread(Create_spectr);
-                    threadCreaterOfSpectr.Start();
+                    //threadCreaterOfSpectr= new Thread(Create_spectr);
+                    if (!threadCreaterOfSpectr.IsAlive) threadCreaterOfSpectr.Start();
+                    
                     is_create_fourier = false;
                     MomentBar.Enabled = true;
                     isSpectrDone = false;
-                    
 
+                    threadCreaterOfSpectr.Join();
                 }
+                
             }
             layers[1] = layer;
             WaveBox.Image = painter.Draw(-2, 2, -1, 20, WaveBox.Width, WaveBox.Height, layers, true, 2);
+            
         }
 
         static private void Create_spectr()
@@ -200,7 +202,7 @@ namespace DynamicWave
                 isSpectrDone = true;
             }
 
-            
+            return;
 
         }
 
@@ -212,6 +214,8 @@ namespace DynamicWave
 
         private void SearchFure_Click(object sender, EventArgs e)
         {
+            threadCreaterOfSpectr = new Thread(Create_spectr);
+
             MomentBar.Enabled = false;
             is_create_fourier = true;
             isSpectrDone = false;
