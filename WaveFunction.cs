@@ -13,7 +13,7 @@ namespace DynamicWave
         public double Vo = 1, alph = 5;
         private double step_t, step_x, R;
         private int K = 300, a = 30;
-       
+
         List<double> x = new List<double>();
         List<Complex> A = new List<Complex>();
         List<Complex> B = new List<Complex>();
@@ -92,11 +92,11 @@ namespace DynamicWave
             }
 
 
-            for (int i = a; i <K-a; i++)
+            for (int i = a; i < K - a; i++)
             {
                 Complex cmplx = new Complex
                 {
-                    Re = Vo * Math.Sin(alph * x[i]) * Math.Sin(alph * x[i]),
+                    Re = Vo * Math.Sin(alph * x[i]) * Math.Sin(alph * x[i]) + 10 * Vo,
                     Im = 0
                 };
                 U[i] = cmplx;
@@ -167,7 +167,7 @@ namespace DynamicWave
                     f_x[i - 1]) / step_x / step_x / 2;
                 Complex cmplx = new Complex
                 {
-                    Re = -buf.Im+1,
+                    Re = -buf.Im + 1,
                     Im = buf.Re
                 };
                 C.Add(cmplx);
@@ -186,7 +186,7 @@ namespace DynamicWave
                 buf = step_t / 2 *
                     (
                         f_x[i] *
-                        (f_x[i+1]*(KSI[i+1]-KSI[i])-f_x[i-1]*(KSI[i]-KSI[i-1]))/step_x/step_x-U[i]*KSI[i]
+                        (f_x[i + 1] * (KSI[i + 1] - KSI[i]) - f_x[i - 1] * (KSI[i] - KSI[i - 1])) / step_x / step_x - U[i] * KSI[i]
                    );
                 Complex cmplx = new Complex
                 {
@@ -255,18 +255,30 @@ namespace DynamicWave
         public List<PointF> Get_U()
         {
             List<PointF> wave = new List<PointF>();
+            float max_ksi = 0, max_u = 0;
+            for (int i = 0; i <= K; i++)
+            {
+                if (KSI[i].Abs > max_ksi) max_ksi = (float)KSI[i].Abs;
+                if (U[i].Abs > max_u) max_u = (float)U[i].Abs;
+
+            }
             for (int i = 0; i <= K; i++)
             {
                 PointF point = new PointF
                 {
                     X = (float)x[i],
-                    Y = (float)U[i].Abs
+                    Y = (float)U[i].Abs / max_u*max_ksi
                 };
                 wave.Add(point);
             }
             return wave;
         }
 
+
+        public List<Complex> Get_KSI()
+        {
+            return KSI;
+        }
         public int ReturnCountPoints()
         {
             return K;
@@ -278,6 +290,6 @@ namespace DynamicWave
             return x;
         }
 
-      
+
     }
 }

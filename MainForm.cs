@@ -45,6 +45,8 @@ namespace DynamicWave
         List<Layers> layers_fure = new List<Layers>();
         List<Layers> layers_own_functions = new List<Layers>();
 
+        List<Complex> KSI = new List<Complex>();
+
         static object lockerDF = new object();
         static List<List<PointF>> data_furePic = new List<List<PointF>>();
         static List<List<PointF>> data_own_func = new List<List<PointF>>();
@@ -112,6 +114,17 @@ namespace DynamicWave
                 graph = wave.NextWave()
             };
 
+            Layers layer2 = new Layers
+            {
+                color = Color.LightBlue,
+                style = DashStyle.Solid,
+                thickness = 3,
+                graph = wave.Get_U()
+            };
+
+            KSI.Clear();
+            KSI.AddRange(wave.Get_KSI());
+
             if (isSpectrDone) { streamFure.Text = "Спектры готовы!"; MomentBar_Scroll(sender, e); FureBar_Scroll(sender, e); isSpectrDone = false; }
 
             if (is_create_fourier)
@@ -128,7 +141,7 @@ namespace DynamicWave
 
                 for (int i = 0; i < layer.graph.Count; i++)
                 {
-                    Complex buf = new Complex { Re = layer.graph[i].Y, Im = 0 };
+                    Complex buf = new Complex { Re = KSI[i].Re, Im = KSI[i].Im };
                     data_fure[i].Add(buf);
                 }
 
@@ -146,6 +159,7 @@ namespace DynamicWave
                 }
                 
             }
+            layers[0] = layer2;
             layers[1] = layer;
             WaveBox.Image = painter.Draw(-2, 2, -1, 20, WaveBox.Width, WaveBox.Height, layers, true, 2);
             
