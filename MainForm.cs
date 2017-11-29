@@ -25,7 +25,7 @@ namespace DynamicWave
 
             RBox.Text = "2";
             ABox.Text = "1";
-            V0Box.Text = "1";
+            V0Box.Text = "10";
             SigmaBox.Text = "0,05";
             X0Box.Text = "0";
             SteptBox.Text = "0,01";
