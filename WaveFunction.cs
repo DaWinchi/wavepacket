@@ -10,7 +10,7 @@ namespace DynamicWave
 {
     class WaveFunction
     {
-        public double Vo = 1, alph = 5;
+        public double Vo = 1, alph = 5, d=100;
         private double step_t, step_x, R;
         private int K = 300, a = 30;
 
@@ -25,9 +25,9 @@ namespace DynamicWave
         List<Complex> U = new List<Complex>();
         List<Complex> f_x = new List<Complex>();
 
-        public WaveFunction(double A, double x0, double sgm, double step_time, double r, double v0, double alpha)
+        public WaveFunction(double A, double x0, double sgm, double step_time, double r, double v0, double alpha, double deep)
         {
-
+            d = deep;
             step_t = step_time;
             Vo = v0;
             R = r;
@@ -96,7 +96,7 @@ namespace DynamicWave
             {
                 Complex cmplx = new Complex
                 {
-                    Re = Vo * Math.Sin(alph * x[i]) * Math.Sin(alph * x[i]) + 10 * Vo,
+                    Re = Vo * Math.Sin(alph * x[i]) * Math.Sin(alph * x[i]) -d,
                     Im = 0
                 };
                 U[i] = cmplx;

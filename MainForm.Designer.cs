@@ -62,6 +62,8 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
+            this.DeepBox = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.WaveBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SpectrBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SingleWaveBox)).BeginInit();
@@ -83,7 +85,7 @@
             // Run
             // 
             this.Run.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Run.Location = new System.Drawing.Point(991, 514);
+            this.Run.Location = new System.Drawing.Point(991, 538);
             this.Run.Name = "Run";
             this.Run.Size = new System.Drawing.Size(261, 30);
             this.Run.TabIndex = 1;
@@ -149,7 +151,7 @@
             // 
             // V0Box
             // 
-            this.V0Box.Location = new System.Drawing.Point(130, 25);
+            this.V0Box.Location = new System.Drawing.Point(130, 56);
             this.V0Box.Name = "V0Box";
             this.V0Box.Size = new System.Drawing.Size(100, 24);
             this.V0Box.TabIndex = 8;
@@ -157,7 +159,7 @@
             // 
             // AlphaBox
             // 
-            this.AlphaBox.Location = new System.Drawing.Point(130, 61);
+            this.AlphaBox.Location = new System.Drawing.Point(130, 86);
             this.AlphaBox.Name = "AlphaBox";
             this.AlphaBox.Size = new System.Drawing.Size(100, 24);
             this.AlphaBox.TabIndex = 9;
@@ -166,7 +168,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(11, 25);
+            this.label4.Location = new System.Drawing.Point(11, 56);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(84, 18);
             this.label4.TabIndex = 10;
@@ -175,7 +177,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(11, 61);
+            this.label5.Location = new System.Drawing.Point(11, 86);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(98, 18);
             this.label5.TabIndex = 11;
@@ -183,7 +185,7 @@
             // 
             // RBox
             // 
-            this.RBox.Location = new System.Drawing.Point(130, 91);
+            this.RBox.Location = new System.Drawing.Point(130, 116);
             this.RBox.Name = "RBox";
             this.RBox.Size = new System.Drawing.Size(100, 24);
             this.RBox.TabIndex = 12;
@@ -192,7 +194,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(76, 91);
+            this.label6.Location = new System.Drawing.Point(76, 116);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(19, 18);
             this.label6.TabIndex = 13;
@@ -201,7 +203,7 @@
             // Stop
             // 
             this.Stop.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Stop.Location = new System.Drawing.Point(991, 550);
+            this.Stop.Location = new System.Drawing.Point(991, 574);
             this.Stop.Name = "Stop";
             this.Stop.Size = new System.Drawing.Size(261, 30);
             this.Stop.TabIndex = 14;
@@ -245,7 +247,7 @@
             // SearchFure
             // 
             this.SearchFure.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.SearchFure.Location = new System.Drawing.Point(988, 458);
+            this.SearchFure.Location = new System.Drawing.Point(988, 482);
             this.SearchFure.Name = "SearchFure";
             this.SearchFure.Size = new System.Drawing.Size(261, 30);
             this.SearchFure.TabIndex = 2;
@@ -272,7 +274,7 @@
             // 
             // FureProgress
             // 
-            this.FureProgress.Location = new System.Drawing.Point(988, 429);
+            this.FureProgress.Location = new System.Drawing.Point(988, 453);
             this.FureProgress.Name = "FureProgress";
             this.FureProgress.Size = new System.Drawing.Size(261, 23);
             this.FureProgress.TabIndex = 22;
@@ -292,7 +294,7 @@
             // 
             this.streamFure.AutoSize = true;
             this.streamFure.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.streamFure.Location = new System.Drawing.Point(988, 408);
+            this.streamFure.Location = new System.Drawing.Point(988, 432);
             this.streamFure.Name = "streamFure";
             this.streamFure.Size = new System.Drawing.Size(139, 18);
             this.streamFure.TabIndex = 24;
@@ -337,6 +339,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label12);
+            this.groupBox2.Controls.Add(this.DeepBox);
             this.groupBox2.Controls.Add(this.V0Box);
             this.groupBox2.Controls.Add(this.AlphaBox);
             this.groupBox2.Controls.Add(this.label4);
@@ -346,7 +350,7 @@
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBox2.Location = new System.Drawing.Point(991, 134);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(261, 128);
+            this.groupBox2.Size = new System.Drawing.Size(261, 148);
             this.groupBox2.TabIndex = 28;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Параметры потенциальной ямы";
@@ -358,7 +362,7 @@
             this.groupBox3.Controls.Add(this.SteptBox);
             this.groupBox3.Controls.Add(this.label8);
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.groupBox3.Location = new System.Drawing.Point(991, 268);
+            this.groupBox3.Location = new System.Drawing.Point(991, 292);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(261, 115);
             this.groupBox3.TabIndex = 29;
@@ -384,6 +388,23 @@
             this.label11.Size = new System.Drawing.Size(242, 18);
             this.label11.TabIndex = 31;
             this.label11.Text = "Стационарная волновая функция";
+            // 
+            // DeepBox
+            // 
+            this.DeepBox.Location = new System.Drawing.Point(130, 26);
+            this.DeepBox.Name = "DeepBox";
+            this.DeepBox.Size = new System.Drawing.Size(100, 24);
+            this.DeepBox.TabIndex = 14;
+            this.DeepBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(11, 26);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(66, 18);
+            this.label12.TabIndex = 15;
+            this.label12.Text = "Глубина";
             // 
             // MainForm
             // 
@@ -461,6 +482,8 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox DeepBox;
     }
 }
 

@@ -25,12 +25,13 @@ namespace DynamicWave
 
             RBox.Text = "2";
             ABox.Text = "1";
-            V0Box.Text = "-1";
+            V0Box.Text = "1";
             SigmaBox.Text = "0,05";
             X0Box.Text = "0";
             SteptBox.Text = "0,01";
             AlphaBox.Text = "5";
             NBox.Text = "256";
+            DeepBox.Text = "50";
 
         }
 
@@ -64,7 +65,7 @@ namespace DynamicWave
         {            
             if (is_create_fourier) is_create_fourier = false;
             wave = new WaveFunction(double.Parse(ABox.Text), double.Parse(X0Box.Text), double.Parse(SigmaBox.Text),
-               double.Parse(SteptBox.Text), double.Parse(RBox.Text), double.Parse(V0Box.Text), double.Parse(AlphaBox.Text));
+               double.Parse(SteptBox.Text), double.Parse(RBox.Text), double.Parse(V0Box.Text), double.Parse(AlphaBox.Text), double.Parse(DeepBox.Text));
 
 
             stept = float.Parse(SteptBox.Text);
